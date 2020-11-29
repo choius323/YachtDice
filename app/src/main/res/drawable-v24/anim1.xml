@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/dice1"
+        android:duration="70" />
+    <item
+        android:drawable="@drawable/dice2"
+        android:duration="70" />
+    <item
+        android:drawable="@drawable/dice5"
+        android:duration="70" />
+    <item
+        android:drawable="@drawable/dice2"
+        android:duration="70" />
+    <item
+        android:drawable="@drawable/dice3"
+        android:duration="70" />
+    <item
+        android:drawable="@drawable/dice6"
+        android:duration="70" />
+    <item
+        android:drawable="@drawable/dice4"
+        android:duration="70" />
+    <item
+        android:drawable="@drawable/dice5"
+        android:duration="70" />
+    <item
+        android:drawable="@drawable/dice1"
+        android:duration="70" />
+
+</animation-list>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="181dp"
+
+        android:layout_height="89dp"
+        android:layout_marginStart="85dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.533">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/score1"
+                android:layout_width="53dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+
+            <TextView
+                android:id="@+id/textView0"
+                android:layout_width="79dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/score7"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/score2"
+                android:layout_width="53dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+
+            <TextView
+                android:id="@+id/score8"
+                android:layout_width="41dp"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/score3"
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+
+            <TextView
+                android:id="@+id/score9"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/score4"
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+
+            <TextView
+                android:id="@+id/score10"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/score5"
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+
+            <TextView
+                android:id="@+id/score11"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/score6"
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+
+            <TextView
+                android:id="@+id/score12"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:text="5"
+                android:textAlignment="center"
+                android:textSize="13.5sp" />
+        </TableRow>
+    </TableLayout>
+
+
+    <ImageView
+        android:id="@+id/dice1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dice2"
+        app:layout_constraintEnd_toStartOf="@+id/dice2"
+        app:srcCompat="@drawable/dice1" />
+
+    <ImageView
+        android:id="@+id/dice2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dice3"
+        app:layout_constraintEnd_toStartOf="@+id/dice3"
+        app:srcCompat="@drawable/dice1" />
+
+    <ImageView
+        android:id="@+id/dice3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dice4"
+        app:layout_constraintEnd_toStartOf="@+id/dice4"
+        app:srcCompat="@drawable/dice1" />
+
+    <ImageView
+        android:id="@+id/dice4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/dice5"
+        app:layout_constraintEnd_toStartOf="@+id/dice5"
+        app:srcCompat="@drawable/dice1" />
+
+    <ImageView
+        android:id="@+id/dice5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="108dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/dice1" />
+
+    <Button
+        android:id="@+id/btnRoll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="176dp"
+        android:layout_marginBottom="40dp"
+        android:text="roll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_rotate" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/diceGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="dice1,dice2,dice3,dice4,dice5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
