@@ -43,7 +43,25 @@ public class Dice extends MainActivity {
 
     //주사위 굴리기
     public void rollDice() {
-
+        Button btn = findViewById(R.id.btnRoll);
+        final ImageView[] iv = new ImageView[diceNumber];
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int result[] = new int[diceNumber];
+                ;
+                for (int i=0;i<diceNumber;i++){
+                    result[i] = rand.nextInt(6)+1;
+                    int ivID = getResources().getIdentifier("dice"+i,"id","com.example.yachtdice");
+                    Animation anim = AnimationUtils.loadAnimation(getApplicationContext(),getResources().getIdentifier("anim"+result[i],"drawable", getApplicationContext().getPackageName()));
+                    int resID = getResources().getIdentifier("dice"+result[i],"drawbale","com.example.yachtdice");
+                    iv[i] = findViewById(ivID);
+                    iv[i].startAnimation(anim);
+                    iv[i].setImageResource(resID);
+                    dice[i].value =result[i];
+                }
+            }
+        });
     }
 
     //주사위 킵
