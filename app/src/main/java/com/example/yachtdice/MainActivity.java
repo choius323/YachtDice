@@ -23,14 +23,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dices.rollDice();
+
             }
         });
         //초기화 버튼
         (findViewById(R.id.btnReset)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dices = new Dice(getContext());
+                dices.rollDice();
             }
         });
+    }
+
+    //점수 입력
+    public void onClickScore(View view){
+        scoreBoard.calcScore(view.getId(), dices.getDiceValues());
     }
 }
