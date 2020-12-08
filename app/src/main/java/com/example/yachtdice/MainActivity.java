@@ -1,22 +1,14 @@
 package com.example.yachtdice;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import java.util.Random;
-
-import static java.security.AccessController.getContext;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    ScoreBoardView scoreBoard;
+    ScoreBoardView scoreBoardView;
     DiceView dices;
 
     @Override
@@ -24,19 +16,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        scoreBoard = new ScoreBoard();
-        dices = new DiceView(getApplicationContext());
-
-        //초기화 버튼
-        (findViewById(R.id.btnReset)).setOnClickListener(new View.OnClickListener() {
-        scoreBoard = new ScoreBoardView(getApplicationContext());
+        scoreBoardView = new ScoreBoardView(getApplicationContext());
         dices = new DiceView(getApplicationContext());
 
         //초기화 버튼
         (findViewById(R.id.btnReset)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scoreBoard.resetGame();
+                scoreBoardView = new ScoreBoardView(getApplicationContext());
+                dices = new DiceView(getApplicationContext());
+            }
+        });
+
+        //초기화 버튼
+        (findViewById(R.id.btnReset)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scoreBoardView.resetGame();
             }
         });
 
@@ -77,6 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
     //점수 입력
     public void onClickScore(View view){
-        scoreBoard.calcScore(view.getId(), dices.getDiceValues());
+        scoreBoardView.calcScore(view.getId(), dices.getDiceValues());
     }
 }

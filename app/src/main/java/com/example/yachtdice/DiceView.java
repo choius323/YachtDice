@@ -1,40 +1,20 @@
 package com.example.yachtdice;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.text.TextPaint;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.os.Handler;
-import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import org.w3c.dom.Attr;
-import org.w3c.dom.Text;
 
 import java.util.Random;
 
 public class DiceView extends ConstraintLayout {
-
     //주사위 각각의 정보
     class DiceInfo {
         ImageView img;
@@ -54,11 +34,6 @@ public class DiceView extends ConstraintLayout {
     final Animation anim1 = AnimationUtils.loadAnimation(getContext(),R.anim.rotate);
     final Animation anim2 = AnimationUtils.loadAnimation(getContext(),R.anim.rotate2);
     final Animation anim3 = AnimationUtils.loadAnimation(getContext(),R.anim.keeping_dice);
-
-
-
-
-
 
     ConstraintLayout cl;
     private final int diceNumber = 5;
@@ -103,7 +78,6 @@ public class DiceView extends ConstraintLayout {
 
     //주사위 굴리기
     public void rollDice(final ImageView imageView, int i) {
-
         if(rollcount==3){
             for(int k=0;k<diceNumber;k++) {
                 dice[k].keep = false;
@@ -114,7 +88,7 @@ public class DiceView extends ConstraintLayout {
         if(dice[i].keep == false){
             Random rand = new Random();
             int r = rand.nextInt(6)+1;
-           // int resID = getResources().getIdentifier("dice"+r,"drawable","com.example.yachtdice");
+            int id = getResources().getIdentifier("dice"+(i+1), "id", "com.example.yachtdice");
             Handler delayHandler = new Handler();
 
             imageView.startAnimation(anim1);
@@ -128,20 +102,6 @@ public class DiceView extends ConstraintLayout {
             imageView.setImageResource(ani[r-1]);
             dice[i] = new DiceInfo(id);
             dice[i].img = (ImageView) cl.findViewById(id);
-        }
-        rollCount = 0;
-    }
-
-    //주사위 굴리기
-    public void rollDice(ImageView imageView, int i) {
-        if(dice[i].keep == false){
-            Random rand = new Random();
-            int r = rand.nextInt(6)+1;
-            int resID = getResources().getIdentifier("dice"+r,"drawable","com.example.yachtdice");
-            imageView.setImageResource(ani[r-1]);
-            dice[i].anim = (AnimationDrawable) imageView.getDrawable();
-            dice[i].anim.start();
-            dice[i].value = r;
         }
     }
 
