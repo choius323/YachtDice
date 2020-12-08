@@ -10,9 +10,9 @@
         android:toDegrees="360" />
     <translate
         android:repeatCount="0"
-        android:duration="500"
+        android:duration="250"
         android:fromXDelta="0"
         android:toXDelta="0"
         android:fromYDelta="0"
-        android:toYDelta="-200%" />
+        android:toYDelta="-300%" />
 </set>

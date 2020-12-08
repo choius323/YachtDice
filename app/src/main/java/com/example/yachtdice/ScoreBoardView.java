@@ -1,11 +1,47 @@
 package com.example.yachtdice;
 
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
-public class ScoreBoard extends MainActivity {
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+public class ScoreBoardView extends TableLayout {
+
+    private final TableLayout cl;
+
+    public ScoreBoardView(Context context) {
+        this(context, null);
+    }
+
+    public ScoreBoardView(Context context, AttributeSet attrs) {
+        super(context, null);
+
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        cl = (TableLayout) inflater.inflate(R.layout.score_board_view, null);
+        // 메인에 스코어 뷰 등록
+        View view = View.inflate(context, R.layout.score_board_view, this);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
 
     int Total = 0;
     public int[] result(int values[]) {
+
+
+
         int[] countList = new int[12];
         int[] sameList = new int[6];
         int small = 0;
@@ -92,6 +128,7 @@ public class ScoreBoard extends MainActivity {
         if(semiTotal>=63){
             Total+=semiTotal;
         }
+        calcBonus();
     }
 
     public void calcTotal() {   // 1~12 까지 점수 합산  + 보너스점수 추가
@@ -101,7 +138,6 @@ public class ScoreBoard extends MainActivity {
             textView[i].findViewById(search);
             Total += Integer.parseInt((textView[i].getText().toString()));
         }
-        calcBonus();
     }
 
     public void finishRound(int totalScore) {

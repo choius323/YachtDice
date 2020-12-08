@@ -45,7 +45,7 @@ public class DiceView extends ConstraintLayout {
         }
     }
 
-    ConstraintLayout cl;
+    private final ConstraintLayout cl;
     private final int diceNumber = 5;
     private int rollCount;
     DiceInfo dice[];
@@ -70,7 +70,6 @@ public class DiceView extends ConstraintLayout {
     public DiceView(Context context, AttributeSet attrs, int defStyleAttrs){
         super(context, attrs, defStyleAttrs);
 
-        //        inflate(getContext(), R.layout.dice_view, (ViewGroup) getParent());
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         cl = (ConstraintLayout) inflater.inflate(R.layout.dice_view, null);
         // 메인에 다이스 뷰 등록
@@ -93,7 +92,7 @@ public class DiceView extends ConstraintLayout {
             Random rand = new Random();
             int r = rand.nextInt(6)+1;
             int resID = getResources().getIdentifier("dice"+r,"drawable","com.example.yachtdice");
-            imageView.setImageResource(ani[r]);
+            imageView.setImageResource(ani[r-1]);
             dice[i].anim = (AnimationDrawable) imageView.getDrawable();
             dice[i].anim.start();
             dice[i].value = r;

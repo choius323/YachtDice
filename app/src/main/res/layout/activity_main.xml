@@ -7,166 +7,6 @@
     android:background="@drawable/back_ground_image"
     tools:context=".MainActivity">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="250dp"
-
-        android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/score1"
-                android:layout_width="53dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-
-            <TextView
-                android:id="@+id/textView0"
-                android:layout_width="79dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/score7"
-                android:layout_width="38dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/score2"
-                android:layout_width="53dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-
-            <TextView
-                android:id="@+id/score8"
-                android:layout_width="41dp"
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/score3"
-                android:layout_width="53dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-
-            <TextView
-                android:id="@+id/score9"
-                android:layout_width="38dp"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/score4"
-                android:layout_width="53dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-
-            <TextView
-                android:id="@+id/score10"
-                android:layout_width="38dp"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/score5"
-                android:layout_width="53dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-
-            <TextView
-                android:id="@+id/score11"
-                android:layout_width="38dp"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/score6"
-                android:layout_width="53dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-
-            <TextView
-                android:id="@+id/score12"
-                android:layout_width="38dp"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:layout_weight="1"
-                android:text="5"
-                android:textAlignment="center"
-                android:textSize="13.5sp" />
-
-        </TableRow>
-    </TableLayout>
-
-
     <Button
         android:id="@+id/btnRoll"
         android:layout_width="wrap_content"
@@ -190,14 +30,22 @@
 
     <com.example.yachtdice.DiceView
         android:id="@+id/diceView"
-        android:layout_width="match_parent"
-        android:layout_height="518dp"
+        android:layout_width="417dp"
+        android:layout_height="623dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.example.yachtdice.ScoreBoardView
+        android:id="@+id/scoreBoardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/diceView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="score_board_view">
+        <attr name="scoreString" format="string" />
+        <attr name="scoreDimension" format="dimension" />
+        <attr name="scoreColor" format="color" />
+        <attr name="scoreDrawable" format="color|reference" />
+    </declare-styleable>
+</resources>

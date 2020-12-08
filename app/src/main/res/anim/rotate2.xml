@@ -3,7 +3,7 @@
     android:interpolator="@android:anim/bounce_interpolator">
     <rotate
         android:repeatCount="0"
-        android:duration="1000"
+        android:duration="250"
         android:pivotX="50%"
         android:pivotY="50%"
         android:fromDegrees="0"
@@ -11,9 +11,9 @@
 
     <translate
         android:repeatCount="0"
-        android:duration="500"
+        android:duration="250"
         android:fromXDelta="0"
         android:toXDelta="0"
-        android:fromYDelta="-200%"
+        android:fromYDelta="-300%"
         android:toYDelta="0" />
 </set>

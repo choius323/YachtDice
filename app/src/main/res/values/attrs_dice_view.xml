@@ -1,8 +1,8 @@
 <resources>
     <declare-styleable name="dice_view">
-        <attr name="exampleString" format="string" />
-        <attr name="exampleDimension" format="dimension" />
-        <attr name="exampleColor" format="color" />
-        <attr name="exampleDrawable" format="color|reference" />
+        <attr name="diceString" format="string" />
+        <attr name="diceDimension" format="dimension" />
+        <attr name="diceColor" format="color" />
+        <attr name="diceDrawable" format="color|reference" />
     </declare-styleable>
 </resources>

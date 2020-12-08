@@ -16,7 +16,7 @@ import java.util.Random;
 import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
-    ScoreBoard scoreBoard;
+    ScoreBoardView scoreBoard;
     DiceView dices;
 
     @Override
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        scoreBoard = new ScoreBoard();
+        scoreBoard = new ScoreBoardView(getApplicationContext());
         dices = new DiceView(getApplicationContext());
 
         //초기화 버튼
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // 하단바 제거
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

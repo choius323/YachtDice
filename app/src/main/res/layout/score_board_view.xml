@@ -1,0 +1,161 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/tableLayout"
+    android:layout_width="250dp"
+
+    android:layout_height="wrap_content"
+    android:layout_marginStart="129dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/score1"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/textView0"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/score7"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/score2"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/score8"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/score3"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/score9"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/score4"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/score10"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/score5"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/score11"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/score6"
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/score12"
+            android:layout_width="38dp"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="23sp" />
+
+    </TableRow>
+
+</TableLayout>
