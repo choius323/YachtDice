@@ -50,7 +50,7 @@ public class DiceView extends ConstraintLayout {
 
     final Animation anim1 = AnimationUtils.loadAnimation(getContext(),R.anim.rotate);
     final Animation anim2 = AnimationUtils.loadAnimation(getContext(),R.anim.rotate2);
-    final Animation anim3 = AnimationUtils.loadAnimation(getContext(),R.anim.translate);
+    final Animation anim3 = AnimationUtils.loadAnimation(getContext(),R.anim.keeping_dice);
 
 
 
@@ -102,7 +102,11 @@ public class DiceView extends ConstraintLayout {
     public void rollDice(final ImageView imageView, int i) {
 
         if(rollcount==3){
-            dice[i].keep = false;
+            for(int k=0;k<diceNumber;k++) {
+                dice[k].keep = false;
+                imageView.clearAnimation();
+            }
+            rollcount=0;
         }
         if(dice[i].keep == false){
             Random rand = new Random();
@@ -120,7 +124,6 @@ public class DiceView extends ConstraintLayout {
             dice[i].value = r;
             imageView.setImageResource(ani[r-1]);
         }
-
     }
 
     //주사위 킵
@@ -128,10 +131,10 @@ public class DiceView extends ConstraintLayout {
         DiceInfo d = getDice(diceView.getId());
         if(d.keep == true){
             d.keep = false;
-            diceView.startAnimation(anim1);
+            diceView.clearAnimation();
         } else {
             d.keep = true;
-            diceView.startAnimation(anim2);
+            diceView.startAnimation(anim3);
         }
         // 애니메이션 추가 필요
     }
