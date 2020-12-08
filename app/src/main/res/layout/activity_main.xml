@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back_ground_image"
     tools:context=".MainActivity">
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="181dp"
+        android:layout_width="250dp"
 
-        android:layout_height="89dp"
-        android:layout_marginStart="85dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -162,55 +162,10 @@
                 android:text="5"
                 android:textAlignment="center"
                 android:textSize="13.5sp" />
+
         </TableRow>
     </TableLayout>
 
-
-    <ImageView
-        android:id="@+id/dice1"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/dice2"
-        app:layout_constraintEnd_toStartOf="@+id/dice2"
-        app:srcCompat="@drawable/dice1" />
-
-    <ImageView
-        android:id="@+id/dice2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/dice3"
-        app:layout_constraintEnd_toStartOf="@+id/dice3"
-        app:srcCompat="@drawable/dice1" />
-
-    <ImageView
-        android:id="@+id/dice3"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/dice4"
-        app:layout_constraintEnd_toStartOf="@+id/dice4"
-        app:srcCompat="@drawable/dice1" />
-
-    <ImageView
-        android:id="@+id/dice4"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/dice5"
-        app:layout_constraintEnd_toStartOf="@+id/dice5"
-        app:srcCompat="@drawable/dice1" />
-
-    <ImageView
-        android:id="@+id/dice5"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="108dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/dice1" />
 
     <Button
         android:id="@+id/btnRoll"
@@ -233,10 +188,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_rotate" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/diceGroup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="dice1,dice2,dice3,dice4,dice5" />
+    <com.example.yachtdice.DiceView
+        android:id="@+id/diceView"
+        android:layout_width="417dp"
+        android:layout_height="623dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

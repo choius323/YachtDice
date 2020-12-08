@@ -1,6 +1,5 @@
 package com.example.yachtdice;
 
-import android.view.View;
 import android.widget.TextView;
 
 public class ScoreBoard extends MainActivity {
