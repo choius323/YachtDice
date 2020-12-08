@@ -4,8 +4,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -21,7 +23,6 @@ import static java.security.AccessController.getContext;
 public class MainActivity extends AppCompatActivity {
     ScoreBoard scoreBoard;
     DiceView dices;
-    DiceView DiceInfo ;
 
 
 
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 dice4.startAnimation(animation2);
                 dice5.startAnimation(animation2);
                     }
-                }, 250);
+                }, 300);
                 for(int i=0;i<5;i++){
                     int id = getResources().getIdentifier("dice"+(i+1), "id", "com.example.yachtdice");
                     ImageView iv = findViewById(id);
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -102,6 +104,46 @@ public class MainActivity extends AppCompatActivity {
     //주사위 클릭, 킵 설정
     public void onClickDice(View view){
         dices.keepDice((ImageView)view);
+        ((ImageView)findViewById(R.id.dice1)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Animation keep_dice = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.keeping_dice);
+                ImageView dice1 = findViewById(R.id.dice1);
+                dice1.startAnimation(keep_dice);
+            }
+        });
+        ((ImageView)findViewById(R.id.dice2)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Animation keep_dice2 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.keeping_dice2);
+                ImageView dice1 = findViewById(R.id.dice2);
+                dice1.startAnimation(keep_dice2);
+            }
+        });
+        ((ImageView)findViewById(R.id.dice3)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Animation keep_dice3 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.keeping_dice3);
+                ImageView dice1 = findViewById(R.id.dice3);
+                dice1.startAnimation(keep_dice3);
+            }
+        });
+        ((ImageView)findViewById(R.id.dice4)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Animation keep_dice4 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.keeping_dice4);
+                ImageView dice1 = findViewById(R.id.dice4);
+                dice1.startAnimation(keep_dice4);
+            }
+        });
+        ((ImageView)findViewById(R.id.dice5)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Animation keep_dice5 = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.keeping_dice5);
+                ImageView dice1 = findViewById(R.id.dice5);
+                dice1.startAnimation(keep_dice5);
+            }
+        });
     }
 
     //점수 입력

@@ -9,6 +9,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="72dp"
         android:layout_marginTop="296dp"
+        android:clickable="true"
         android:onClick="onClickDice"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,6 +21,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="296dp"
+        android:clickable="true"
         app:layout_constraintStart_toEndOf="@id/dice1"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dice1" />
@@ -30,6 +32,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="296dp"
+        android:clickable="true"
         app:layout_constraintStart_toEndOf="@id/dice2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dice1" />
@@ -38,8 +41,9 @@
         android:id="@+id/dice4"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="296dp"
+        android:clickable="true"
         app:layout_constraintStart_toEndOf="@id/dice3"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dice1" />
@@ -50,6 +54,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="296dp"
+        android:clickable="true"
         app:layout_constraintStart_toEndOf="@id/dice4"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dice1" />

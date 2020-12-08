@@ -5,6 +5,6 @@
     android:fromXDelta="0"
     android:fromYDelta="0"
     android:repeatCount="0"
-    android:toXDelta="-30"
-    android:toYDelta="-250"
+    android:toXDelta="11"
+    android:toYDelta="-565%"
 />
