@@ -9,7 +9,7 @@ import android.widget.Button;
 import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
-    ScoreBoard scoreBoard;
+    ScoreBoard scoreBoard;//  sss
     DiceView dices;
 
     @Override
