@@ -44,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
                     int id = getResources().getIdentifier("dice"+(i+1), "id", "com.example.yachtdice");
                     ImageView iv = findViewById(id);
                     dices.rollDice(iv, i);
-
                 }
-                dices.rollcount+=1;
+                dices.rollCount +=1;
             }
         });
     }

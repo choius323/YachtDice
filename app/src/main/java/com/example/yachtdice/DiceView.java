@@ -22,6 +22,7 @@ public class DiceView extends ConstraintLayout {
         int value = 1; //주사위 눈 값
         Boolean keep = false; //킵하는지 저장
         int id;
+        int num;
 
         public DiceInfo(int id) {
             this.id = id;
@@ -33,11 +34,11 @@ public class DiceView extends ConstraintLayout {
 
     final Animation anim1 = AnimationUtils.loadAnimation(getContext(),R.anim.rotate);
     final Animation anim2 = AnimationUtils.loadAnimation(getContext(),R.anim.rotate2);
-    final Animation anim3 = AnimationUtils.loadAnimation(getContext(),R.anim.keeping_dice);
+    final Animation anim3 = AnimationUtils.loadAnimation(getContext(),R.anim.keeping_dice1);
 
     ConstraintLayout cl;
     private final int diceNumber = 5;
-    public int rollcount=0;
+    public int rollCount =0;
     DiceInfo dice[];
     //주사위 눈 바뀌는 애니메이션
     private final int[] ani = new int[]
@@ -73,17 +74,18 @@ public class DiceView extends ConstraintLayout {
 //            id = getResources().getIdentifier("dice1", "id", "com.example.yachtdice");
             dice[i] = new DiceInfo(id);
             dice[i].img = (ImageView) cl.findViewById(id);
+            dice[i].num = i;
         }
     }
 
     //주사위 굴리기
     public void rollDice(final ImageView imageView, int i) {
-        if(rollcount==3){
+        if(rollCount ==3){
             for(int k=0;k<diceNumber;k++) {
                 dice[k].keep = false;
                 imageView.clearAnimation();
             }
-            rollcount=0;
+            rollCount =0;
         }
         if(dice[i].keep == false){
             Random rand = new Random();
@@ -111,11 +113,13 @@ public class DiceView extends ConstraintLayout {
         if(d.keep == true){
             d.keep = false;
             diceView.clearAnimation();
+            int id = getResources().getIdentifier("keeping_dice"+d.num, "anim", "com.example.yachtdice");
+            Animation keep_dice = AnimationUtils.loadAnimation(getContext(), id);
+            diceView.startAnimation(keep_dice);
         } else {
             d.keep = true;
-            diceView.startAnimation(anim3);
+//            diceView.startAnimation(anim3);
         }
-        // 애니메이션 추가 필요
     }
 
     //주사위 값 반환

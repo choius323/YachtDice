@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:repeatCount="infinite"
-    android:duration="3000"
+    android:fillAfter = "true"
+    android:duration="300"
     android:fromXDelta="0"
     android:fromYDelta="0"
-    android:toXDelta="270%"
-    android:toYDelta="-200%" />
+    android:repeatCount="0"
+    android:toXDelta="14"
+    android:toYDelta="-565%"
+/>
