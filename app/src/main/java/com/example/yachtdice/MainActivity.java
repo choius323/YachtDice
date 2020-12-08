@@ -24,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        scoreBoard = new ScoreBoard();
+        dices = new DiceView(getApplicationContext());
+
+        //초기화 버튼
+        (findViewById(R.id.btnReset)).setOnClickListener(new View.OnClickListener() {
         scoreBoard = new ScoreBoardView(getApplicationContext());
         dices = new DiceView(getApplicationContext());
 
@@ -43,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
                     int id = getResources().getIdentifier("dice"+(i+1), "id", "com.example.yachtdice");
                     ImageView iv = findViewById(id);
                     dices.rollDice(iv, i);
+
                 }
+                dices.rollcount+=1;
             }
         });
     }
@@ -72,5 +79,4 @@ public class MainActivity extends AppCompatActivity {
     public void onClickScore(View view){
         scoreBoard.calcScore(view.getId(), dices.getDiceValues());
     }
-
 }
