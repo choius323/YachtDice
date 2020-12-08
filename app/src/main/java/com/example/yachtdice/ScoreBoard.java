@@ -71,7 +71,7 @@ public class ScoreBoard extends MainActivity {
         int[] score  = result( values);
         TextView textView = findViewById(selectedCell);
         for (int i=0;i<12;i++){
-            if(textView.getId()==getResources().getIdentifier("score"+(i+1),"id","com.example.yacht")){
+            if(textView.getId()==getResources().getIdentifier("score"+(i+1),"id","com.example.yachtdice")){
                 textView.setText(score[i]);
             }
         }// switch(v.getID()){
@@ -79,14 +79,13 @@ public class ScoreBoard extends MainActivity {
         // case R.id.name2; ...
         //  Log.i("ID값",v.getResources().getResourceEntryName(v.getID()));
         //   결과  : name1,name2,...
-
     }
 
     public void calcBonus() {  //1~6 까지 점수 합산후 63넘으면 총점에 30점 추가
         int semiTotal = 0;
         TextView textView[] = new TextView[6];
         for (int i=0;i<6;i++){
-            int search = getResources().getIdentifier("score"+(i+1),"id","com.example.yacht");
+            int search = getResources().getIdentifier("score"+(i+1),"id","com.example.yachtdice");
             textView[i].findViewById(search);
             semiTotal += Integer.parseInt(textView[i].getText().toString());
         }
@@ -98,7 +97,7 @@ public class ScoreBoard extends MainActivity {
     public void calcTotal() {   // 1~12 까지 점수 합산  + 보너스점수 추가
         TextView textView[] = new TextView[12];
         for (int i=0;i<12;i++) {
-            int search = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yacht");
+            int search = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
             textView[i].findViewById(search);
             Total += Integer.parseInt((textView[i].getText().toString()));
         }

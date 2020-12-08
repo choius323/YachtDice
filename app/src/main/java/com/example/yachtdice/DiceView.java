@@ -5,10 +5,12 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +33,7 @@ public class DiceView extends ConstraintLayout {
     //주사위 각각의 정보
     class DiceInfo {
         ImageView img;
-        Animation anim;
+        AnimationDrawable anim;
         int value = 1; //주사위 눈 값
         Boolean keep = false; //킵하는지 저장
         int id;
@@ -40,7 +42,6 @@ public class DiceView extends ConstraintLayout {
             this.id = id;
             value = 1;
             keep = false;
-            img = (ImageView) findViewById(id);
         }
     }
 
@@ -57,7 +58,8 @@ public class DiceView extends ConstraintLayout {
         super.onDraw(canvas);
     }
 
-    public DiceView(Context context) {
+    // 뷰 생성자
+   public DiceView(Context context) {
         this(context, null);
     }
 
@@ -68,8 +70,8 @@ public class DiceView extends ConstraintLayout {
     public DiceView(Context context, AttributeSet attrs, int defStyleAttrs){
         super(context, attrs, defStyleAttrs);
 
+        //        inflate(getContext(), R.layout.dice_view, (ViewGroup) getParent());
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        inflate(getContext(), R.layout.dice_view, (ViewGroup) getParent());
         cl = (ConstraintLayout) inflater.inflate(R.layout.dice_view, null);
         // 메인에 다이스 뷰 등록
         View view = View.inflate(context, R.layout.dice_view, this);
@@ -79,35 +81,28 @@ public class DiceView extends ConstraintLayout {
         int id = 0;
         for (int i = 0; i < diceNumber; i++) {
             id = getResources().getIdentifier("dice"+(i+1), "id", "com.example.yachtdice");
-//            id = getResources().getIdentifier("dice1", "id", "com.example.yachtdice");
             dice[i] = new DiceInfo(id);
             dice[i].img = (ImageView) cl.findViewById(id);
         }
-
         rollCount = 0;
     }
 
     //주사위 굴리기
-    public void rollDice() {
-        Random rand = new Random();
-
-        for (int i=0;i<diceNumber;i++){
-            if(dice[i].keep == false){
-                int r = rand.nextInt(6)+1;
-                int resID = getResources().getIdentifier("dice"+r,"drawable","com.example.yachtdice");
-    //            Animation anim = AnimationUtils.loadAnimation(getApplicationContext(),getResources().getIdentifier("anim"+result[i],"drawable", getApplicationContext().getPackageName()));
-    //            dice[i].img.startAnimation(anim);
-
-                // 이미지 변경       ** 작동 안됨
-                dice[i].img.setImageResource(resID);
-                dice[i].value = r;
-            }
+    public void rollDice(ImageView imageView, int i) {
+        if(dice[i].keep == false){
+            Random rand = new Random();
+            int r = rand.nextInt(6)+1;
+            int resID = getResources().getIdentifier("dice"+r,"drawable","com.example.yachtdice");
+            imageView.setImageResource(ani[r]);
+            dice[i].anim = (AnimationDrawable) imageView.getDrawable();
+            dice[i].anim.start();
+            dice[i].value = r;
         }
     }
 
     //주사위 킵
-    public void keepDice(int index) {
-        DiceInfo d = getDice(index);
+    public void keepDice(ImageView diceView) {
+        DiceInfo d = getDice(diceView.getId());
         if(d.keep == true){
             d.keep = false;
         } else {
