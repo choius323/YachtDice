@@ -4,12 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
 public class ScoreBoardView extends TableLayout {
 
     private final TableLayout cl;
+    int resetCount;
 
     public ScoreBoardView(Context context) {
         this(context, null);
@@ -106,10 +110,16 @@ public class ScoreBoardView extends TableLayout {
 //        total += Integer.parseInt(textView.getText().toString());
 
         // total score에 점수 등록
+
+        resetCount++;
     }
 
     public void finishRound(int totalScore) {
-
+        if(resetCount == 12){
+            ((ImageButton)findViewById(R.id.btnReset)).setVisibility(View.VISIBLE);
+            ((Button)findViewById(R.id.btnRoll)).setVisibility(View.GONE);
+            resetCount = 0;
+        }
     }
 
     public void resetGame() {
@@ -117,13 +127,13 @@ public class ScoreBoardView extends TableLayout {
         int id;
         for (int i = 0; i < 12; i++) {
             id = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
-            ((TextView) findViewById(id)).setText("0");
+            ((TextView) findViewById(id)).setText("");
         }
 
 //        id = getResources().getIdentifier("bonusScore", "id", "com.example.yachtdice");
-//        ((TextView) findViewById(id)).setText("0");
+//        ((TextView) findViewById(id)).setText("");
 //
 //        id = getResources().getIdentifier("totalScore", "id", "com.example.yachtdice");
-//        ((TextView) findViewById(id)).setText("0");
+//        ((TextView) findViewById(id)).setText("");
     }
 }
