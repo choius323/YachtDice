@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -72,6 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
     //점수 입력
     public void onClickScore(View view){
-        scoreBoardView.calcScore(view.getId(), dices.getDiceValues());
+        scoreBoardView.calcScore((TextView) view, dices.getDiceValues());
     }
 }

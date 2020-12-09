@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -18,11 +17,9 @@ public class ScoreBoardView extends TableLayout {
 
     public ScoreBoardView(Context context, AttributeSet attrs) {
         super(context, null);
-
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        cl = (TableLayout) inflater.inflate(R.layout.score_board_view, null);
         // 메인에 스코어 뷰 등록
-        View view = View.inflate(context, R.layout.score_board_view, this);
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        cl = (TableLayout) inflater.inflate(R.layout.score_board_view, this);
     }
 
     @Override
@@ -30,107 +27,85 @@ public class ScoreBoardView extends TableLayout {
         super.onDraw(canvas);
     }
 
-    int Total = 0;
-    public int[] result(int values[]) {
+    // 선택된 칸 점수 계산
+    public void calcScore(TextView selectedCell, int[] values) {
+        int[] scoreId = new int[12];
+//        TextView textView = findViewById(selectedCell);
+        for (int i = 0; i < 12; i++) {
+            scoreId[i] = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
+        }
 
+        int sum = 0;
 
-
-        int[] countList = new int[12];
-        int[] sameList = new int[6];
-        int small = 0;
-        int large = 0;
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 5; j++) {
-                if (i + 1 == values[j]) {
-                    sameList[i]++;
-                }
-            }
-        }
-        for (int i = 0; i < 6; i++) {              // 1~6 까지 점수
-            countList[i] = (i + 1) * sameList[i];
-        }
-        for (int i = 0; i < 6; i++) {              //choice
-            countList[6] += (i + 1) * sameList[i];
-        }
-        for (int i = 0; i < 6; i++) {      // 4 of a kind
-            if (sameList[i] >= 4) {
-                countList[7] = 30;
-            }
-        }
-        for (int i = 0; i < 6; i++) {      //full house
-            if (sameList[i] == 3) {
-                for (int j = 0; j < 6; j++) {
-                    if (sameList[j] == 2) {
-                        countList[8] = 30;
+        // 1~6 칸
+        for (int i = 1; i < 7; i++) {
+            if (selectedCell.getId() == scoreId[i - 1]) {
+                for (int value : values) { // values == 받아온 주사위 값 배열
+                    if (value == i) {
+                        sum += value;
                     }
                 }
+                selectedCell.setText("" + sum);
             }
         }
-        for (int i=0;i<3;i++){
-            for (int j=0;j<4;j++){
-                if (sameList[i+j]==0){
-                    small += 1;
-                    break;
-                }
+        // choice 칸
+        if (selectedCell.getId() == scoreId[6]) {
+            for (int value : values) {
+                sum += value;
+                selectedCell.setText("" + sum);
             }
-        }
-        for (int i=0;i<2;i++){
-            for (int j=0;j<5;j++){
-                if(sameList[i+j]==0){
-                    large += 1;
-                    break;
-                }
-            }
-        }
-        if(small<3){                //Small Straight
-            countList[9] = 15;
-        }
-        if(large<2){                //Large Straight
-            countList[10] = 30;
-        }
-        for (int i=0;i<6;i++){      //Yacht
-            if(sameList[i]==5){
-                countList[11] = 50;
-            }
-        }
-        return countList;
-    }
+        } else if (selectedCell.getId() == scoreId[7]) { // 4 of a Kind 칸
 
-    public void calcScore(int selectedCell, int[] values) { //
-        int[] score  = result( values);
-        TextView textView = findViewById(selectedCell);
-        for (int i=0;i<12;i++){
-            if(textView.getId()==getResources().getIdentifier("score"+(i+1),"id","com.example.yachtdice")){
-                textView.setText(score[i]);
-            }
-        }// switch(v.getID()){
-        // case R.id.name1;
-        // case R.id.name2; ...
-        //  Log.i("ID값",v.getResources().getResourceEntryName(v.getID()));
-        //   결과  : name1,name2,...
-    }
+        } else if (selectedCell.getId() == scoreId[8]) { // Full House 칸
 
-    public void calcBonus() {  //1~6 까지 점수 합산후 63넘으면 총점에 30점 추가
-        int semiTotal = 0;
-        TextView textView[] = new TextView[6];
-        for (int i=0;i<6;i++){
-            int search = getResources().getIdentifier("score"+(i+1),"id","com.example.yachtdice");
-            textView[i].findViewById(search);
-            semiTotal += Integer.parseInt(textView[i].getText().toString());
-        }
-        if(semiTotal>=63){
-            Total+=semiTotal;
+        } else if (selectedCell.getId() == scoreId[9]) { // Small Straight 칸
+
+        } else if (selectedCell.getId() == scoreId[10]) { // Large Straight 칸
+
+        } else if (selectedCell.getId() == scoreId[11]) { // Yacht 칸
+            for (int value : values) {
+                sum += value;
+            }
+            if ((float) sum == (float) values[0] / 5) {
+                selectedCell.setText("" + 50);
+            } else {
+                selectedCell.setText("" + 0);
+            }
         }
         calcBonus();
     }
 
-    public void calcTotal() {   // 1~12 까지 점수 합산  + 보너스점수 추가
-        TextView textView[] = new TextView[12];
-        for (int i=0;i<12;i++) {
+    //    1~6 까지 점수 합산후 63넘으면 총점에 30점 추가
+    public void calcBonus() {
+        int semiTotal = 0;
+        TextView textView;
+        for (int i = 0; i < 6; i++) {
             int search = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
-            textView[i].findViewById(search);
-            Total += Integer.parseInt((textView[i].getText().toString()));
+            textView = findViewById(search);
+            semiTotal += Integer.parseInt(textView.getText().toString());
         }
+        if (semiTotal >= 63) {
+            // subtotal에 보너스 점수 등록
+        }
+        calcTotal();
+    }
+
+    //    1~12 까지 점수 합산  + 보너스점수 추가
+    public void calcTotal() {
+        int total = 0;
+        TextView textView;
+        int id;
+        for (int i = 0; i < 12; i++) {
+            id = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
+            textView = findViewById(id);
+            total += Integer.parseInt(textView.getText().toString());
+        }
+
+//        id = getResources().getIdentifier("bonusScore", "id", "com.example.yachtdice");
+//        textView = findViewById(id);
+//        total += Integer.parseInt(textView.getText().toString());
+
+        // total score에 점수 등록
     }
 
     public void finishRound(int totalScore) {
@@ -138,6 +113,17 @@ public class ScoreBoardView extends TableLayout {
     }
 
     public void resetGame() {
+        TextView textView;
+        int id;
+        for (int i = 0; i < 12; i++) {
+            id = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
+            ((TextView) findViewById(id)).setText("0");
+        }
 
+//        id = getResources().getIdentifier("bonusScore", "id", "com.example.yachtdice");
+//        ((TextView) findViewById(id)).setText("0");
+//
+//        id = getResources().getIdentifier("totalScore", "id", "com.example.yachtdice");
+//        ((TextView) findViewById(id)).setText("0");
     }
 }
