@@ -36,37 +36,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="0.0" >
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="50"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="366dp"
-            tools:layout_editor_absoluteY="80dp" />
-
-        <TextView
-            android:id="@+id/Subtotal"
-            android:layout_width="26dp"
-            android:layout_height="28dp"
-            android:text="30"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="160dp"
-            tools:layout_editor_absoluteY="80dp" />
-    </com.example.yachtdice.DiceView>
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.example.yachtdice.ScoreBoardView
-        android:id="@+id/scoreBoardView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/diceView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="109dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.example.yachtdice.ScoreBoardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
