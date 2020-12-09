@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -38,12 +39,13 @@ public class MainActivity extends AppCompatActivity {
         // 주사위 굴리기 버튼
         ((Button)findViewById(R.id.btnRoll)).setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
+                if(dices.rollcount==3){ dices.rollcount=0;}
                 for(int i=0;i<5;i++){
                     int id = getResources().getIdentifier("dice"+(i+1), "id", "com.example.yachtdice");
                     ImageView iv = findViewById(id);
                     dices.rollDice(iv, i);
-
                 }
                 dices.rollcount+=1;
             }

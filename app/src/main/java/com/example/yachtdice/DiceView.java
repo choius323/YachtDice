@@ -1,5 +1,7 @@
 package com.example.yachtdice;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -7,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextPaint;
@@ -15,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.w3c.dom.Attr;
@@ -31,6 +36,7 @@ import org.w3c.dom.Text;
 import java.util.Random;
 
 public class DiceView extends ConstraintLayout {
+
 
     //주사위 각각의 정보
     class DiceInfo {
@@ -51,6 +57,7 @@ public class DiceView extends ConstraintLayout {
     final Animation anim1 = AnimationUtils.loadAnimation(getContext(),R.anim.rotate);
     final Animation anim2 = AnimationUtils.loadAnimation(getContext(),R.anim.rotate2);
     final Animation anim3 = AnimationUtils.loadAnimation(getContext(),R.anim.keeping_dice);
+    final Animation anim4 = AnimationUtils.loadAnimation(getContext(),R.anim.translate);
 
 
 
@@ -60,6 +67,7 @@ public class DiceView extends ConstraintLayout {
     ConstraintLayout cl;
     private final int diceNumber = 5;
     public int rollcount=0;
+    public int Chance=2;
     DiceInfo dice[];
     //주사위 눈 바뀌는 애니메이션
     private final int[] ani = new int[]
@@ -101,13 +109,7 @@ public class DiceView extends ConstraintLayout {
     //주사위 굴리기
     public void rollDice(final ImageView imageView, int i) {
 
-        if(rollcount==3){
-            for(int k=0;k<diceNumber;k++) {
-                dice[k].keep = false;
-                imageView.clearAnimation();
-            }
-            rollcount=0;
-        }
+
         if(dice[i].keep == false){
             Random rand = new Random();
             int r = rand.nextInt(6)+1;
@@ -124,6 +126,10 @@ public class DiceView extends ConstraintLayout {
             dice[i].value = r;
             imageView.setImageResource(ani[r-1]);
         }
+        if(rollcount==2){
+            imageView.setY(1150);
+            dice[i].keep = false;
+        }
     }
 
     //주사위 킵
@@ -131,10 +137,11 @@ public class DiceView extends ConstraintLayout {
         DiceInfo d = getDice(diceView.getId());
         if(d.keep == true){
             d.keep = false;
-            diceView.clearAnimation();
+            diceView.setY(1150);
         } else {
             d.keep = true;
-            diceView.startAnimation(anim3);
+            diceView.setY(265);
+
         }
         // 애니메이션 추가 필요
     }
