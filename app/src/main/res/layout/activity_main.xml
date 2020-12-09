@@ -30,31 +30,26 @@
 
     <com.example.yachtdice.DiceView
         android:id="@+id/diceView"
-        android:layout_width="417dp"
-        android:layout_height="623dp"
+        android:layout_width="0dp"
+        android:layout_height="521dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="0.0" >
+        app:layout_constraintTop_toBottomOf="@id/bonusScore"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="50"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="366dp"
-            tools:layout_editor_absoluteY="80dp" />
-
-        <TextView
-            android:id="@+id/Subtotal"
-            android:layout_width="26dp"
-            android:layout_height="28dp"
-            android:text="30"
-            android:textSize="20sp"
-            tools:layout_editor_absoluteX="160dp"
-            tools:layout_editor_absoluteY="80dp" />
+            android:id="@+id/txtRollCount"
+            android:layout_width="59dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginBottom="4dp"
+            android:gravity="center"
+            android:text="0/3"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </com.example.yachtdice.DiceView>
 
     <com.example.yachtdice.ScoreBoardView
@@ -66,7 +61,29 @@
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.035" />
+
+    <TextView
+        android:id="@+id/totalScore"
+        android:layout_width="66dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:text="50"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/diceView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scoreBoardView" />
+
+    <TextView
+        android:id="@+id/bonusScore"
+        android:layout_width="65dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="143dp"
+        android:gravity="center"
+        android:text="30"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/totalScore"
+        app:layout_constraintEnd_toStartOf="@+id/totalScore" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

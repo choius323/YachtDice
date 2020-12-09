@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     dices.rollDice(iv, i);
                 }
                 dices.rollCount += 1;
-
+                ((TextView)findViewById(R.id.txtRollCount)).setText(dices.rollCount + " / 3");
 //                굴리기 횟수 끝
                 if(dices.rollCount >= 3){
                     findViewById(R.id.btnRoll).setClickable(false);
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         scoreBoardView.calcScore((TextView) view, dices.getDiceValues());
         findViewById(R.id.btnRoll).setClickable(true);
         dices.rollCount = 0;
+        ((TextView)findViewById(R.id.txtRollCount)).setText(dices.rollCount + " / 3");
         if(scoreBoardView.resetCount >= 12){
             findViewById(R.id.btnReset).setVisibility(View.VISIBLE);
             findViewById(R.id.btnRoll).setVisibility(View.INVISIBLE);
@@ -88,10 +89,10 @@ public class MainActivity extends AppCompatActivity {
             id = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
             ((TextView) findViewById(id)).setText("");
         }
-//        id = getResources().getIdentifier("bonusScore", "id", "com.example.yachtdice");
-//        ((TextView) findViewById(id)).setText("");
-//
-//        id = getResources().getIdentifier("totalScore", "id", "com.example.yachtdice");
-//        ((TextView) findViewById(id)).setText("");
+        id = getResources().getIdentifier("bonusScore", "id", "com.example.yachtdice");
+        ((TextView) findViewById(id)).setText("");
+
+        id = getResources().getIdentifier("totalScore", "id", "com.example.yachtdice");
+        ((TextView) findViewById(id)).setText("");
     }
 }
