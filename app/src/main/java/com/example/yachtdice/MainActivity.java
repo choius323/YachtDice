@@ -24,29 +24,25 @@ public class MainActivity extends AppCompatActivity {
         (findViewById(R.id.btnReset)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scoreBoardView = new ScoreBoardView(getApplicationContext());
-                dices = new DiceView(getApplicationContext());
-            }
-        });
-
-        //초기화 버튼
-        (findViewById(R.id.btnReset)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scoreBoardView.resetGame();
+                resetGame();
             }
         });
 
         // 주사위 굴리기 버튼
-        ((Button)findViewById(R.id.btnRoll)).setOnClickListener(new View.OnClickListener() {
+        ((Button) findViewById(R.id.btnRoll)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for(int i=0;i<5;i++){
-                    int id = getResources().getIdentifier("dice"+(i+1), "id", "com.example.yachtdice");
+                for (int i = 0; i < 5; i++) {
+                    int id = getResources().getIdentifier("dice" + (i + 1), "id", "com.example.yachtdice");
                     ImageView iv = findViewById(id);
                     dices.rollDice(iv, i);
                 }
-                dices.rollCount +=1;
+                dices.rollCount += 1;
+
+//                굴리기 횟수 끝
+                if(dices.rollCount >= 3){
+                    findViewById(R.id.btnRoll).setClickable(false);
+                }
             }
         });
     }
@@ -67,12 +63,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //주사위 클릭, 킵 설정
-    public void onClickDice(View view){
-        dices.keepDice((ImageView)view);
+    public void onClickDice(View view) {
+        dices.keepDice((ImageView) view);
     }
 
     //점수 입력
-    public void onClickScore(View view){
+    public void onClickScore(View view) {
         scoreBoardView.calcScore((TextView) view, dices.getDiceValues());
+        findViewById(R.id.btnRoll).setClickable(true);
+        dices.rollCount = 0;
+        if(scoreBoardView.resetCount >= 12){
+            findViewById(R.id.btnReset).setVisibility(View.VISIBLE);
+            findViewById(R.id.btnRoll).setVisibility(View.INVISIBLE);
+            scoreBoardView.resetCount = 0;
+        }
+    }
+
+    // 게임 초기화
+    public void resetGame(){
+        findViewById(R.id.btnRoll).setVisibility(View.VISIBLE);
+        findViewById(R.id.btnReset).setVisibility(View.INVISIBLE);
+        int id;
+        for (int i = 0; i < 12; i++) {
+            id = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
+            ((TextView) findViewById(id)).setText("");
+        }
+//        id = getResources().getIdentifier("bonusScore", "id", "com.example.yachtdice");
+//        ((TextView) findViewById(id)).setText("");
+//
+//        id = getResources().getIdentifier("totalScore", "id", "com.example.yachtdice");
+//        ((TextView) findViewById(id)).setText("");
     }
 }

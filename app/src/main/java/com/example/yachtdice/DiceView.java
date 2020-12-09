@@ -33,7 +33,6 @@ public class DiceView extends ConstraintLayout {
 
     final Animation anim1 = AnimationUtils.loadAnimation(getContext(), R.anim.rotate);
     final Animation anim2 = AnimationUtils.loadAnimation(getContext(), R.anim.rotate2);
-    final Animation anim3 = AnimationUtils.loadAnimation(getContext(), R.anim.keeping_dice1);
 
     ConstraintLayout cl;
     private final int diceNumber = 5;
@@ -80,13 +79,6 @@ public class DiceView extends ConstraintLayout {
 
     //주사위 굴리기
     public void rollDice(final ImageView imageView, int i) {
-        if (rollCount == 3) {
-            for (int k = 0; k < diceNumber; k++) {
-                dice[k].keep = false;
-                imageView.clearAnimation();
-            }
-            rollCount = 0;
-        }
         if (dice[i].keep == false) {
             Random rand = new Random();
             int r = rand.nextInt(6) + 1;
@@ -100,12 +92,12 @@ public class DiceView extends ConstraintLayout {
                     imageView.startAnimation(anim2);
                 }
             }, 250);
-//            dice[i].value = r;
-            imageView.setImageResource(ani[r - 1]);
-//            dice[i] = new DiceInfo(id);
-//            dice[i].img = (ImageView) cl.findViewById(id);
-            imageView.setImageResource(getResources().getIdentifier("dice" + r, "drawable", "com.example.yachtdice"));
             value[i] = r;
+            imageView.setImageResource(getResources().getIdentifier("dice" + r, "drawable", "com.example.yachtdice"));
+        }
+        if (rollCount == 2) {
+            imageView.setY(1150);
+            dice[i].keep = false;
         }
     }
 
@@ -114,13 +106,10 @@ public class DiceView extends ConstraintLayout {
         DiceInfo d = getDice(diceView.getId());
         if (d.keep == true) {
             d.keep = false;
-            diceView.clearAnimation();
-            int id = getResources().getIdentifier("keeping_dice" + d.num, "anim", "com.example.yachtdice");
-            Animation keep_dice = AnimationUtils.loadAnimation(getContext(), id);
-            diceView.startAnimation(keep_dice);
+            diceView.setY(1150);
         } else {
             d.keep = true;
-//            diceView.startAnimation(anim3);
+            diceView.setY(265);
         }
     }
 
