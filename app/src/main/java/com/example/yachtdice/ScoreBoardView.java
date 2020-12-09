@@ -10,6 +10,8 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class ScoreBoardView extends TableLayout {
 
     private final TableLayout cl;
+    int resetCount;
 
     public ScoreBoardView(Context context) {
         this(context, null);
@@ -39,8 +42,6 @@ public class ScoreBoardView extends TableLayout {
 
     int Total = 0;
     public int[] result(int values[]) {
-
-
 
         int[] countList = new int[12];
         int[] sameList = new int[6];
@@ -138,13 +139,25 @@ public class ScoreBoardView extends TableLayout {
             textView[i].findViewById(search);
             Total += Integer.parseInt((textView[i].getText().toString()));
         }
+        resetCount++;
     }
 
     public void finishRound(int totalScore) {
-
+        if(resetCount == 12){
+            ImageButton rebtn = (ImageButton)findViewById(R.id.btnReset);
+            Button rollbtn = (Button)findViewById(R.id.btnRoll);
+            rebtn.setVisibility(View.VISIBLE);
+            rollbtn.setVisibility(View.GONE);
+            resetCount = 0;
+        }
     }
 
     public void resetGame() {
-
+        TextView textView[] = new TextView[12];
+        for(int i=0;i<12;i++){
+            int search = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
+            textView[i].findViewById(search);
+            textView[i].setText("");
+        }
     }
 }
