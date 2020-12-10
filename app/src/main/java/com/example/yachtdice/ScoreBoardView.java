@@ -115,8 +115,8 @@ public class ScoreBoardView extends TableLayout {
                     }
                 }
             }
-            if(cnt==4 && (comp2==(comp+(comp-1)) || cnt2==2)) { //단, Large Staright 경우 입력 허용 X  (변경가능)
-                selectedCell.setText(""+sum);
+            if((cnt==4 && (comp2==(comp+(comp-1)) || cnt2==2)) || cnt==5) { //단, Large Staright 경우 입력 허용 X  (변경가능)
+                selectedCell.setText(""+30);
             }
             else{ selectedCell.setText("0");}
         } else if (selectedCell.getId() == scoreId[10]) { // Large Straight 칸
@@ -135,7 +135,7 @@ public class ScoreBoardView extends TableLayout {
                 }
             }
             if(cnt==5 && comp==1){
-                selectedCell.setText(""+sum);
+                selectedCell.setText(""+40);
             }
             else{ selectedCell.setText("0");}
         } else if (selectedCell.getId() == scoreId[11]) { // Yacht 칸
@@ -148,10 +148,9 @@ public class ScoreBoardView extends TableLayout {
                 selectedCell.setText("" + 0);
             }
         }
-        calcSubScore();
     }
 
-    //    1~6 까지 점수 합산후 63넘으면 총점에 30점 추가
+    /*    1~6 까지 점수 합산후 63넘으면 총점에 30점 추가
     public void calcSubScore() {
         int semiTotal = 0;
         TextView textView;
@@ -168,10 +167,10 @@ public class ScoreBoardView extends TableLayout {
             // bonus score에 보너스 점수 등록
         }
         calcTotal();
-    }
+    }*/
 
     //    1~12 까지 점수 합산  + 보너스점수 추가
-    public void calcTotal() {
+   /* public void calcTotal() {
         int total = 0;
         TextView textView;
         int id;
@@ -192,5 +191,5 @@ public class ScoreBoardView extends TableLayout {
         // total score에 점수 등록
 
         resetCount++;
-    }
+    }*/
 }
