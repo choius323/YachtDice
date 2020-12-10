@@ -64,29 +64,36 @@ public class ScoreBoardView extends TableLayout {
             ArrayList<Integer> list = new ArrayList<Integer>();  //리스트 선언
             for (int value : values) {
                 list.add(value);
+                sum+=value;
             }
             for(int i=1;i<7;i++){
                 int res = Collections.frequency(list,i);    //frequency == 주사위값 i의 개수를 세는 기능
                 if(res==4){
-                    selectedCell.setText(""+(i*4));
+                    comp=1;
                 }
             }
+            if(comp==1){selectedCell.setText(""+sum);}
+            else{selectedCell.setText(""+0);}
         } else if (selectedCell.getId() == scoreId[8]) { // Full House 칸
             ArrayList<Integer> list = new ArrayList<Integer>();
             for (int value : values){
                 list.add(value);
             }
 
-            for(int i=1;i<7;i++){
+            for(int i=1;i<7;i++){       //25
                 if(list.contains(i)){ // 리스트에 주사위값이 존재하면 True  아니면 False
-                    sum += Collections.frequency(list,i)*i;     //하다보니 족보점수 산정 기준을 모르겠음
-                    cnt+=1;                                     // 이하 리스트선언후 비슷하게 코딩함
+                    //sum += Collections.frequency(list,i)*i;     //하다보니 족보점수 산정 기준을 모르겠음
+                    cnt+=1;
+                    if(Collections.frequency(list,i)==3){ comp = 1; }// 이하 리스트선언후 비슷하게 코딩함
                 }
             }
-            if(cnt==2){
-                selectedCell.setText(""+sum);
+            if(cnt==2 && comp==1){
+                selectedCell.setText("25");
             }
-        } else if (selectedCell.getId() == scoreId[9]) { // Small Straight 칸
+            else{
+                selectedCell.setText("0");
+            }
+        } else if (selectedCell.getId() == scoreId[9]) { // Small Straight 칸 30
             ArrayList<Integer> list = new ArrayList<Integer>();
             for (int value : values){
                 list.add(value);
@@ -101,7 +108,7 @@ public class ScoreBoardView extends TableLayout {
                 } else {
                     if (i == 1 || i == 6) {
                         cnt2 += 1;
-                    }  // 1 , 6 이 없는 경우 cnt2로 조건 // (1,2),(5,6) comp2로 조건
+                    }  // 1 , 6 이 없는 경우 cnt2로 조건 // (1,2),(5,6) comp2로 조건 40
                     if (i != 3 && i != 4) {
                         comp2 += i;
                         comp = i;
@@ -111,6 +118,7 @@ public class ScoreBoardView extends TableLayout {
             if(cnt==4 && (comp2==(comp+(comp-1)) || cnt2==2)) { //단, Large Staright 경우 입력 허용 X  (변경가능)
                 selectedCell.setText(""+sum);
             }
+            else{ selectedCell.setText("0");}
         } else if (selectedCell.getId() == scoreId[10]) { // Large Straight 칸
             ArrayList<Integer> list = new ArrayList<Integer>();
             for (int value : values){
@@ -129,6 +137,7 @@ public class ScoreBoardView extends TableLayout {
             if(cnt==5 && comp==1){
                 selectedCell.setText(""+sum);
             }
+            else{ selectedCell.setText("0");}
         } else if (selectedCell.getId() == scoreId[11]) { // Yacht 칸
             for (int value : values) {
                 sum += value;
@@ -139,11 +148,11 @@ public class ScoreBoardView extends TableLayout {
                 selectedCell.setText("" + 0);
             }
         }
-        calcBonus();
+        calcSubScore();
     }
 
     //    1~6 까지 점수 합산후 63넘으면 총점에 30점 추가
-    public void calcBonus() {
+    public void calcSubScore() {
         int semiTotal = 0;
         TextView textView;
         for (int i = 0; i < 6; i++) {
