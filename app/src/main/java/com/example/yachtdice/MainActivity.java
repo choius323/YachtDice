@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     ScoreBoardView scoreBoardView;
     DiceView dices;
-    boolean isClickableDice = false;
-    boolean isClickableScore = false;
+    boolean isClickableDice = true;
+    boolean isClickableScore = true;
     int resetCount = 0;
 
     @Override
@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
         scoreBoardView = new ScoreBoardView(getApplicationContext());
         dices = new DiceView(getApplicationContext());
+
+        toggleClickableScore();
+        toggleClickableDice();
 
         //초기화 버튼
         (findViewById(R.id.btnReset)).setOnClickListener(new View.OnClickListener() {
@@ -79,25 +82,28 @@ public class MainActivity extends AppCompatActivity {
 
     //점수 입력
     public void onClickScore(View view) {
-        scoreBoardView.calcScore((TextView) view, dices.getDiceValues());
-        findViewById(R.id.btnRoll).setClickable(true);
-        dices.rollCount = 0;
-        ((TextView)findViewById(R.id.txtRollCount)).setText(dices.rollCount + " / 3");
-        for (int i=1;i<6;i++){
-            if(dices.dice[i-1].keep == true){
-                int id = getResources().getIdentifier("dice" + i, "id", "com.example.yachtdice");
-                dices.keepDice((ImageView)findViewById(id));
+        if(((TextView)view).getText().equals("") == true) { // 이미 채운 칸은 클릭 불가
+            scoreBoardView.calcScore((TextView) view, dices.getDiceValues()); // 해당 칸 점수 계산
+            findViewById(R.id.btnRoll).setClickable(true);
+            dices.rollCount = 0;
+            ((TextView) findViewById(R.id.txtRollCount)).setText(dices.rollCount + " / 3");
+            for (int i = 1; i < 6; i++) {
+                if (dices.dice[i - 1].keep == true) {
+                    int id = getResources().getIdentifier("dice" + i, "id", "com.example.yachtdice");
+                    dices.keepDice((ImageView) findViewById(id));
+                }
             }
-        }
-        if(resetCount >= 12){
-            findViewById(R.id.btnReset).setVisibility(View.VISIBLE);
-            findViewById(R.id.btnRoll).setVisibility(View.INVISIBLE);
-            resetCount = 0;
-        } else {
+            if (resetCount >= 11) { // 12칸 모두 채웠을 때
+                findViewById(R.id.btnReset).setVisibility(View.VISIBLE);
+                findViewById(R.id.btnRoll).setVisibility(View.INVISIBLE);
+                resetCount = 0;
+            } else {
+                resetCount++;
+            }
             toggleClickableDice();
             toggleClickableScore();
+            calcTotalScore();
         }
-        calcTotalScore();
     }
 
     // 게임 초기화
@@ -148,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
         int total = 0;
         int subTotal = 0;
         TextView textView;
-        TextView subScore;
         for (int i = 0; i < 12; i++) {
             int search = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
             textView = findViewById(search);
