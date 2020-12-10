@@ -13,7 +13,6 @@ import java.util.Collections;
 public class ScoreBoardView extends TableLayout {
 
     private final TableLayout cl;
-    int resetCount = 0;
 
     public ScoreBoardView(Context context) {
         this(context, null);
@@ -138,49 +137,5 @@ public class ScoreBoardView extends TableLayout {
                 selectedCell.setText("" + 0);
             }
         }
-        calcSubScore();
-    }
-
-    //    1~6 까지 점수 합산후 63넘으면 총점에 30점 추가
-    public void calcSubScore() {
-        int semiTotal = 0;
-        TextView textView;
-        for (int i = 0; i < 6; i++) {
-            int search = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
-            textView = findViewById(search);
-            if (textView.getText().toString().equals("")) {
-                semiTotal += 0;
-            } else {
-                semiTotal += Integer.parseInt(textView.getText().toString());
-            }
-        }
-        if (semiTotal >= 63) {
-            // bonus score에 보너스 점수 등록
-        }
-        calcTotal();
-    }
-
-    //    1~12 까지 점수 합산  + 보너스점수 추가
-    public void calcTotal() {
-        int total = 0;
-        TextView textView;
-        int id;
-        for (int i = 0; i < 12; i++) {
-            id = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
-            textView = findViewById(id);
-            if (textView.getText().toString().equals("")) {
-                total += 0;
-            } else {
-                total += Integer.parseInt(textView.getText().toString());
-            }
-        }
-
-//        id = getResources().getIdentifier("bonusScore", "id", "com.example.yachtdice");
-//        textView = findViewById(id);
-//        total += Integer.parseInt(textView.getText().toString());
-
-        // total score에 점수 등록
-
-        resetCount++;
     }
 }
