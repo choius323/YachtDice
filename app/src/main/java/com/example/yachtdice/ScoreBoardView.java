@@ -7,6 +7,10 @@ import android.view.LayoutInflater;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 public class ScoreBoardView extends TableLayout {
 
     private final TableLayout cl;
@@ -37,7 +41,8 @@ public class ScoreBoardView extends TableLayout {
         }
 
         int sum = 0;
-
+        int cnt = 0;
+        int comp = 0;
         // 1~6 칸
         for (int i = 1; i < 7; i++) {
             if (selectedCell.getId() == scoreId[i - 1]) {
@@ -56,27 +61,74 @@ public class ScoreBoardView extends TableLayout {
                 selectedCell.setText("" + sum);
             }
         } else if (selectedCell.getId() == scoreId[7]) { // 4 of a Kind 칸
-            int cnt = 0;
-            int temp = 7;
-            int save = 0;
+            ArrayList<Integer> list = new ArrayList<Integer>();  //리스트 선언
             for (int value : values) {
-                if (value % temp == 0) {
-                    cnt += 1;
-                    save = value;
-                }
-                temp = value;
+                list.add(value);
             }
-            if (cnt == 4) {
-                selectedCell.setText("" + (save * 4));
-            } else {
-                selectedCell.setText("" + 0);
+            for(int i=1;i<7;i++){
+                int res = Collections.frequency(list,i);    //frequency == 주사위값 i의 개수를 세는 기능
+                if(res==4){
+                    selectedCell.setText(""+(i*4));
+                }
             }
         } else if (selectedCell.getId() == scoreId[8]) { // Full House 칸
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            for (int value : values){
+                list.add(value);
+            }
 
+            for(int i=1;i<7;i++){
+                if(list.contains(i)){ // 리스트에 주사위값이 존재하면 True  아니면 False
+                    sum += Collections.frequency(list,i)*i;     //하다보니 족보점수 산정 기준을 모르겠음
+                    cnt+=1;                                     // 이하 리스트선언후 비슷하게 코딩함
+                }
+            }
+            if(cnt==2){
+                selectedCell.setText(""+sum);
+            }
         } else if (selectedCell.getId() == scoreId[9]) { // Small Straight 칸
-
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            for (int value : values){
+                list.add(value);
+            }
+            cnt =0;
+            int cnt2=0;
+            int comp2=0;
+            for(int i=1;i<7;i++) {
+                if (list.contains(i)) {
+                    sum += Collections.frequency(list, i) * i;
+                    cnt += 1;
+                } else {
+                    if (i == 1 || i == 6) {
+                        cnt2 += 1;
+                    }  // 1 , 6 이 없는 경우 cnt2로 조건 // (1,2),(5,6) comp2로 조건
+                    if (i != 3 && i != 4) {
+                        comp2 += i;
+                        comp = i;
+                    }
+                }
+            }
+            if(cnt==4 && (comp2==(comp+(comp-1)) || cnt2==2)) { //단, Large Staright 경우 입력 허용 X  (변경가능)
+                selectedCell.setText(""+sum);
+            }
         } else if (selectedCell.getId() == scoreId[10]) { // Large Straight 칸
-
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            for (int value : values){
+                list.add(value);
+            }
+            cnt =0;
+            for(int i=1;i<7;i++){
+                if(list.contains(i)){
+                    sum += Collections.frequency(list,i)*i;
+                    cnt+=1;
+                }
+                else{
+                    if(i==1 || i==6){ comp += 1;}   //1 or 6 이 없는경우 Large 완성 comp로 조건
+                }
+            }
+            if(cnt==5 && comp==1){
+                selectedCell.setText(""+sum);
+            }
         } else if (selectedCell.getId() == scoreId[11]) { // Yacht 칸
             for (int value : values) {
                 sum += value;
