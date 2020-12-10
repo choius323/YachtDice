@@ -8,12 +8,12 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class ScoreBoardView extends TableLayout {
 
     private final TableLayout cl;
+    int resetCount = 0;
 
     public ScoreBoardView(Context context) {
         this(context, null);
@@ -114,8 +114,8 @@ public class ScoreBoardView extends TableLayout {
                     }
                 }
             }
-            if(cnt==4 && (comp2==(comp+(comp-1)) || cnt2==2)) { //단, Large Staright 경우 입력 허용 X  (변경가능)
-                selectedCell.setText(""+sum);
+            if((cnt==4 && (comp2==(comp+(comp-1)) || cnt2==2)) || cnt==5) { //단, Large Staright 경우 입력 허용 X  (변경가능)
+                selectedCell.setText(""+30);
             }
             else{ selectedCell.setText("0");}
         } else if (selectedCell.getId() == scoreId[10]) { // Large Straight 칸
@@ -134,7 +134,7 @@ public class ScoreBoardView extends TableLayout {
                 }
             }
             if(cnt==5 && comp==1){
-                selectedCell.setText(""+sum);
+                selectedCell.setText(""+40);
             }
             else{ selectedCell.setText("0");}
         } else if (selectedCell.getId() == scoreId[11]) { // Yacht 칸
