@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 resetCount++;
             }
+            isClickableDice = true;
             toggleClickableDice();
             toggleClickableScore();
             calcTotalScore();

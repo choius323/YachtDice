@@ -12,8 +12,6 @@ import java.util.Collections;
 
 public class ScoreBoardView extends TableLayout {
 
-    private final TableLayout cl;
-
     public ScoreBoardView(Context context) {
         this(context, null);
     }
@@ -22,7 +20,7 @@ public class ScoreBoardView extends TableLayout {
         super(context, null);
         // 메인에 스코어 뷰 등록
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        cl = (TableLayout) inflater.inflate(R.layout.score_board_view, this);
+        TableLayout cl = (TableLayout) inflater.inflate(R.layout.score_board_view, this);
     }
 
     @Override
@@ -113,7 +111,7 @@ public class ScoreBoardView extends TableLayout {
                     }
                 }
             }
-            if((cnt==4 && (comp2==(comp+(comp-1)) || cnt2==2)) || (cnt==5 && (comp==1 || comp==6))) {
+            if((cnt==4 && (comp2==(comp+(comp-1)) || cnt2==2)) || (cnt==5 && ((comp!=3 || comp!=4) && comp!=0))) {
                 selectedCell.setText(""+30);
             }
             else{ selectedCell.setText("0");}

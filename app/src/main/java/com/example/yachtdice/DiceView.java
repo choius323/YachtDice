@@ -16,32 +16,24 @@ import java.util.Random;
 public class DiceView extends ConstraintLayout {
     //주사위 각각의 정보
     class DiceInfo {
-        ImageView img;
-        Animation anim;
         int value = 1; //주사위 눈 값
         Boolean keep = false; //킵하는지 저장
         int id;
-        int num;
 
         public DiceInfo(int id) {
             this.id = id;
             value = 1;
             keep = false;
-            img = (ImageView) findViewById(id);
         }
     }
 
     final Animation anim1 = AnimationUtils.loadAnimation(getContext(), R.anim.rotate);
     final Animation anim2 = AnimationUtils.loadAnimation(getContext(), R.anim.rotate2);
 
-    ConstraintLayout cl;
     private final int diceNumber = 5;
     public int rollCount = 0;
     static int[] value;
     DiceInfo dice[];
-    //주사위 눈 바뀌는 애니메이션
-    private final int[] ani = new int[]
-            {R.drawable.anim1, R.drawable.anim2, R.drawable.anim3, R.drawable.anim4, R.drawable.anim5, R.drawable.anim6};
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -63,7 +55,7 @@ public class DiceView extends ConstraintLayout {
         value = new int[diceNumber];
         // 메인에 다이스 뷰 등록
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        cl = (ConstraintLayout) inflater.inflate(R.layout.dice_view, this, true);
+        ConstraintLayout cl = (ConstraintLayout) inflater.inflate(R.layout.dice_view, this, true);
 
         //주사위 5개 객체 생성
         dice = new DiceInfo[diceNumber];
@@ -71,8 +63,6 @@ public class DiceView extends ConstraintLayout {
         for (int i = 0; i < diceNumber; i++) {
             id = getResources().getIdentifier("dice" + (i + 1), "id", "com.example.yachtdice");
             dice[i] = new DiceInfo(id);
-            dice[i].img = (ImageView) cl.findViewById(id);
-            dice[i].num = i;
         }
     }
 
@@ -81,7 +71,6 @@ public class DiceView extends ConstraintLayout {
         if (dice[i].keep == false) {
             Random rand = new Random();
             int r = rand.nextInt(6) + 1;
-//            int id = getResources().getIdentifier("dice" + (i + 1), "id", "com.example.yachtdice");
             Handler delayHandler = new Handler();
 
             imageView.startAnimation(anim1);
@@ -114,11 +103,6 @@ public class DiceView extends ConstraintLayout {
 
     //주사위 값 반환
     public int[] getDiceValues() {
-//        int[] values = new int[diceNumber];
-//        for (int i = 0; i < diceNumber; i++) {
-//            values[i] = dice[i].value;
-//        }
-//        return values;
         return value;
     }
 
