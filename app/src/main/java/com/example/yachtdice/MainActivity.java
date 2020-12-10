@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
             toggleClickableDice();
             toggleClickableScore();
         }
+        calcSubScore();
     }
 
     // 게임 초기화
@@ -140,5 +141,23 @@ public class MainActivity extends AppCompatActivity {
             id = getResources().getIdentifier("dice" + i, "id", "com.example.yachtdice");
             ((ImageView) findViewById(id)).setClickable(isClickableDice);
         }
+    }
+
+    //    1~6 까지 점수 합산후 63넘으면 총점에 30점 추가
+    public void calcSubScore() {
+        int semiTotal = 0;
+        TextView textView;
+        TextView subscore;
+        for (int i = 0; i < 6; i++) {
+            int search = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
+            textView = findViewById(search);
+            if (textView.getText().toString().equals("")) {
+                semiTotal += 0;
+            } else {
+                semiTotal += Integer.parseInt(textView.getText().toString());
+            }
+        }
+        subscore = findViewById(R.id.subScore);
+        subscore.setText("" + semiTotal);
     }
 }
