@@ -8,7 +8,6 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class ScoreBoardView extends TableLayout {
@@ -139,11 +138,11 @@ public class ScoreBoardView extends TableLayout {
                 selectedCell.setText("" + 0);
             }
         }
-        calcBonus();
+        calcSubScore();
     }
 
     //    1~6 까지 점수 합산후 63넘으면 총점에 30점 추가
-    public void calcBonus() {
+    public void calcSubScore() {
         int semiTotal = 0;
         TextView textView;
         for (int i = 0; i < 6; i++) {

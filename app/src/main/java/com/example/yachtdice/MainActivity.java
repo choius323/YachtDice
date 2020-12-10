@@ -11,6 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     ScoreBoardView scoreBoardView;
     DiceView dices;
+    boolean isClickableDice = false;
+    boolean isClickableScore = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         ((Button) findViewById(R.id.btnRoll)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(isClickableDice == false){
+                    toggleClickableDice();
+                }
+                if(isClickableScore == false){
+                    toggleClickableScore();
+                }
                 for (int i = 0; i < 5; i++) {
                     int id = getResources().getIdentifier("dice" + (i + 1), "id", "com.example.yachtdice");
                     ImageView iv = findViewById(id);
@@ -42,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 //                굴리기 횟수 끝
                 if(dices.rollCount >= 3){
                     findViewById(R.id.btnRoll).setClickable(false);
+                    toggleClickableDice();
                 }
             }
         });
@@ -73,10 +83,19 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnRoll).setClickable(true);
         dices.rollCount = 0;
         ((TextView)findViewById(R.id.txtRollCount)).setText(dices.rollCount + " / 3");
+        for (int i=1;i<6;i++){
+            if(dices.dice[i-1].keep == true){
+                int id = getResources().getIdentifier("dice" + i, "id", "com.example.yachtdice");
+                dices.keepDice((ImageView)findViewById(id));
+            }
+        }
         if(scoreBoardView.resetCount >= 12){
             findViewById(R.id.btnReset).setVisibility(View.VISIBLE);
             findViewById(R.id.btnRoll).setVisibility(View.INVISIBLE);
             scoreBoardView.resetCount = 0;
+        } else {
+            toggleClickableDice();
+            toggleClickableScore();
         }
     }
 
@@ -89,10 +108,37 @@ public class MainActivity extends AppCompatActivity {
             id = getResources().getIdentifier("score" + (i + 1), "id", "com.example.yachtdice");
             ((TextView) findViewById(id)).setText("");
         }
-        id = getResources().getIdentifier("bonusScore", "id", "com.example.yachtdice");
+        id = getResources().getIdentifier("subScore", "id", "com.example.yachtdice");
         ((TextView) findViewById(id)).setText("");
 
         id = getResources().getIdentifier("totalScore", "id", "com.example.yachtdice");
         ((TextView) findViewById(id)).setText("");
+    }
+
+    // 스코어 클릭 유무
+    public void toggleClickableScore(){
+        int id;
+        isClickableScore = !isClickableScore;
+
+        for (int i = 1; i < 13; i++) {
+            id = getResources().getIdentifier("score" + i, "id", "com.example.yachtdice");
+            ((TextView) findViewById(id)).setClickable(isClickableScore);
+        }
+        id = getResources().getIdentifier("subScore", "id", "com.example.yachtdice");
+        ((TextView) findViewById(id)).setClickable(isClickableScore);
+
+        id = getResources().getIdentifier("totalScore", "id", "com.example.yachtdice");
+        ((TextView) findViewById(id)).setClickable(isClickableScore);
+    }
+
+    // 주사위 클릭 유무
+    public void toggleClickableDice(){
+        int id;
+        isClickableDice = !isClickableDice;
+
+        for (int i = 1; i < 6; i++) {
+            id = getResources().getIdentifier("dice" + i, "id", "com.example.yachtdice");
+            ((ImageView) findViewById(id)).setClickable(isClickableDice);
+        }
     }
 }

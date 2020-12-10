@@ -70,7 +70,6 @@ public class DiceView extends ConstraintLayout {
         int id = 0;
         for (int i = 0; i < diceNumber; i++) {
             id = getResources().getIdentifier("dice" + (i + 1), "id", "com.example.yachtdice");
-//            id = getResources().getIdentifier("dice1", "id", "com.example.yachtdice");
             dice[i] = new DiceInfo(id);
             dice[i].img = (ImageView) cl.findViewById(id);
             dice[i].num = i;
@@ -95,8 +94,8 @@ public class DiceView extends ConstraintLayout {
             value[i] = r;
             imageView.setImageResource(getResources().getIdentifier("dice" + r, "drawable", "com.example.yachtdice"));
         }
-        if (rollCount == 2) {
-            imageView.setY(1150);
+        if (rollCount == 3) {
+            imageView.setY(870);
             dice[i].keep = false;
         }
     }
@@ -106,10 +105,10 @@ public class DiceView extends ConstraintLayout {
         DiceInfo d = getDice(diceView.getId());
         if (d.keep == true) {
             d.keep = false;
-            diceView.setY(1150);
+            diceView.setY(870);
         } else {
             d.keep = true;
-            diceView.setY(265);
+            diceView.setY(180);
         }
     }
 
