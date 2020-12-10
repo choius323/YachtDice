@@ -42,6 +42,7 @@ public class ScoreBoardView extends TableLayout {
 
         int sum = 0;
         int cnt = 0;
+        int comp = 0;
         // 1~6 칸
         for (int i = 1; i < 7; i++) {
             if (selectedCell.getId() == scoreId[i - 1]) {
@@ -66,7 +67,7 @@ public class ScoreBoardView extends TableLayout {
             }
             for(int i=1;i<7;i++){
                 int res = Collections.frequency(list,i);    //frequency == 주사위값 i의 개수를 세는 기능
-                if(res>=4){
+                if(res==4){
                     selectedCell.setText(""+(i*4));
                 }
             }
@@ -91,13 +92,23 @@ public class ScoreBoardView extends TableLayout {
                 list.add(value);
             }
             cnt =0;
-            for(int i=1;i<7;i++){
-                if(list.contains(i)){
-                    sum += Collections.frequency(list,i)*i;
-                    cnt+=1;
+            int cnt2=0;
+            int comp2=0;
+            for(int i=1;i<7;i++) {
+                if (list.contains(i)) {
+                    sum += Collections.frequency(list, i) * i;
+                    cnt += 1;
+                } else {
+                    if (i == 1 || i == 6) {
+                        cnt2 += 1;
+                    }  // 1 , 6 이 없는 경우 cnt2로 조건 // (1,2),(5,6) comp2로 조건
+                    if (i != 3 && i != 4) {
+                        comp2 += i;
+                        comp = i;
+                    }
                 }
             }
-            if(cnt==4){
+            if(cnt==4 && (comp2==(comp+(comp-1)) || cnt2==2)) { //단, Large Staright 경우 입력 허용 X  (변경가능)
                 selectedCell.setText(""+sum);
             }
         } else if (selectedCell.getId() == scoreId[10]) { // Large Straight 칸
@@ -111,8 +122,11 @@ public class ScoreBoardView extends TableLayout {
                     sum += Collections.frequency(list,i)*i;
                     cnt+=1;
                 }
+                else{
+                    if(i==1 || i==6){ comp += 1;}   //1 or 6 이 없는경우 Large 완성 comp로 조건
+                }
             }
-            if(cnt==5){
+            if(cnt==5 && comp==1){
                 selectedCell.setText(""+sum);
             }
         } else if (selectedCell.getId() == scoreId[11]) { // Yacht 칸
